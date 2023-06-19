@@ -8,3 +8,8 @@
         name: tree
         state: present
         update_cache: yes
+    - name: install apache
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+        update_cache: yes
