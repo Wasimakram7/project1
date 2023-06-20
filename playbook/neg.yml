@@ -15,6 +15,6 @@
         update_cache: yes
     - name: installing nginx
       ansible.builtin.apt:
-        name: nghinx
+        name: nginx
         update_cache: yes
         state: present 
