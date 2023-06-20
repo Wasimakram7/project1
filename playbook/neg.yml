@@ -1,0 +1,20 @@
+---
+- name: install lamp server on ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: update packages and install tree
+      ansible.builtin.apt:
+        name: tree
+        state: present
+        update_cache: yes
+    - name: install apache
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+        update_cache: yes
+    - name: installing nginx
+      ansible.builtin.apt:
+        name: nghinx
+        update_cache: yes
+        state: present 
