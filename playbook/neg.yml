@@ -12,7 +12,7 @@
         name: httpd
         enabled: yes
         state: started
-    - name: install apache server
+    - name: install php
       ansible.builtin.yum:
         name: php
         state: present
