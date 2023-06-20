@@ -3,18 +3,29 @@
   hosts: all
   become: yes
   tasks:
-    - name: update packages and install tree
-      ansible.builtin.apt:
-        name: tree
+    - name: install apache server
+      ansible.builtin.yum:
+        name: httpd
         state: present
-        update_cache: yes
-    - name: install apache
-      ansible.builtin.apt:
-        name: apache2
+    - name: enable and start apache
+      ansible.builtin.systemd:
+        name: httpd
+        enabled: yes
+        state: started
+    - name: install apache server
+      ansible.builtin.yum:
+        name: php
         state: present
-        update_cache: yes
-    - name: installing nginx
-      ansible.builtin.apt:
-        name: nginx
-        update_cache: yes
-        state: present 
+      notify:
+        - restart apache
+    - name: copy the info.php file
+      ansible.builtin.copy:
+        src: info.php
+        dest: /var/www/html/info.php
+      notify:
+        - restart apache
+  handlers:
+    - name: restart apache
+      ansible.builtin.systemd:
+        name: httpd
+        state: restarted
