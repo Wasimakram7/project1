@@ -1,6 +1,6 @@
 ---
 - name: install lamp server on ubuntu
-  hosts: redhat
+  hosts: all
   become: yes
   tasks:
     - name: install apache server
@@ -28,4 +28,3 @@
     - name: restart apache
       ansible.builtin.systemd:
         name: httpd
-        state: restarted
