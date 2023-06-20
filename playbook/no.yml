@@ -17,7 +17,7 @@
         state: present
     - name: copy the info.php page
       ansible.builtin.copy:
-        src: info.php
+        src: in.php
         dest: /var/www/html/info.php
     - name: restart apache2
       ansible.builtin.systemd:
