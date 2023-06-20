@@ -18,9 +18,9 @@
         state: present
       notify:
         - restart apache
-    - name: copy the info.php file
+    - name: copy the in.php file
       ansible.builtin.copy:
-        src: info.php
+        src: in.php
         dest: /var/www/html/info.php
       notify:
         - restart apache
